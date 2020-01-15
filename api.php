@@ -9,20 +9,22 @@ echo ("Nos pide los datos de la función...: ".$funcion);
 
 // switch para desviar a una u otra función
 if($funcion == 'getUsuarios'){
-    getUsuarios();
+    getUsuarios($conexion);
 }
 
 
 
-function getUsuarios(){
+function getUsuarios($conexion){
     $sql = "SELECT * FROM usuarios";
     $sel = mysqli_query($conexion, $sql);
 
     $data = array();
 	while ($row = mysqli_fetch_assoc($sel)) {
-		$data[] = $row;
+        print_r($row);
+		//$data[] = $row;
 	}
 
+    exit;
 	$response = array(
         "data" => $data
     );
