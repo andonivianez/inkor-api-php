@@ -5,7 +5,7 @@ include 'conexion.php';
 // Recogida de parámetros GET
 $funcion = $_GET["func"];
 
-echo ("Nos pide los datos de la función...: ".$funcion);
+echo ("Nos pide los datos de la función...: ".$funcion."<br />");
 
 // switch para desviar a una u otra función
 if($funcion == 'getUsuarios'){
@@ -20,11 +20,10 @@ function getUsuarios($conexion){
 
     $data = array();
 	while ($row = mysqli_fetch_assoc($sel)) {
-        print_r($row);
-		//$data[] = $row;
+        //print_r($row);
+		$data[] = $row;
 	}
 
-    exit;
 	$response = array(
         "data" => $data
     );
