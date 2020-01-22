@@ -38,6 +38,13 @@ function getUsuarios($conexion){
 }
 
 function getUsuarioById($conexion){
+    /* funcionalidad para limitar el acceso mediante clave:
+    if($_GET['clave'] != '1234'){
+        echo "no autorizado";
+        exit;
+    }
+    
+    */
     $id = $_GET["id"];
     $sql = "SELECT * FROM usuarios where id = $id";
     $sel = mysqli_query($conexion, $sql);
