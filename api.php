@@ -14,12 +14,32 @@ if($funcion == 'getUsuarios'){
     getComics($conexion);
 }elseif ($funcion == 'getCaracteres') {
     getCaracteres($conexion);
+}elseif ($funcion == 'getUsuarioById') {
+    getUsuarioById($conexion);
 }
 
 
 
 function getUsuarios($conexion){
     $sql = "SELECT * FROM usuarios";
+    $sel = mysqli_query($conexion, $sql);
+
+    $data = array();
+	while ($row = mysqli_fetch_assoc($sel)) {
+        //print_r($row);
+		$data[] = $row;
+	}
+
+	$response = array(
+        "data" => $data
+    );
+
+    echo json_encode($response);
+}
+
+function getUsuarioById($conexion){
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM usuarios where id = $id";
     $sel = mysqli_query($conexion, $sql);
 
     $data = array();
